@@ -1,6 +1,6 @@
-[submodule "HowToWaste-API"]
+[submodule "HowToWaste API"]
 	path = HowToWaste-API
 	url = https://github.com/DouglasHdezT/HowToWaste-API.git
-[submodule "HowToWaste-MobileClient"]
+[submodule "HowToWaste Mobile Client"]
 	path = HowToWaste-MobileClient
 	url = https://github.com/DouglasHdezT/HowToWaste-MobileClient.git
