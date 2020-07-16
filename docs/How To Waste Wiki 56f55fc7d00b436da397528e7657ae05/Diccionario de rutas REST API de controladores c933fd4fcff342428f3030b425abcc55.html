@@ -1,0 +1,860 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Diccionario de rutas REST (API de controladores)</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c933fd4f-cff3-4242-8f30-30b425abcc55" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="Diccionario%20de%20rutas%20REST%20API%20de%20controladores%20c933fd4fcff342428f3030b425abcc55/gamepad.png"/></div><h1 class="page-title">Diccionario de rutas REST (API de controladores)</h1></header><div class="page-body"><p id="170bd059-888f-4b96-b271-20741a0669ef" class="">
+</p><h2 id="c60ed9cc-2076-4695-80f0-9ac185f8fd46" class="">Lugares de reciclaje</h2><h3 id="3a69a175-894b-4a32-a06d-68d63c365166" class="">Obtener todos los centros de reciclaje</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fea500d2-2510-454a-a4f6-d7803003183e"><div style="font-size:1.5em"><span class="icon">🛑</span></div><div style="width:100%">/api/recyclerPlace/getAll</div></figure><div id="e6d7bd67-b162-459c-980e-b4ece6cbe27d" class="column-list"><div id="44be3d4e-b7f8-4f6d-b363-2b907cc5c812" style="width:31.25%" class="column"><h3 id="627f321d-56de-4a27-b194-5eea52592aea" class="">Method</h3><pre id="65feeb8c-f27a-4583-98b8-5c80b8d7eb6a" class="code"><code>&quot;method&quot;: &quot;GET&quot;</code></pre></div><div id="356723ea-ace7-4cc2-b617-0ecdc82b856a" style="width:68.75%" class="column"><h3 id="8d9d917d-51f1-4e34-9c07-b493ae88fa9a" class="">Example</h3><p id="abfc047a-10e5-43b1-8dd6-c7456a59847b" class="">Request</p><pre id="74f79635-0280-4428-82f5-942942654447" class="code"><code>URL: /api/recyclerPlace/getAll</code></pre><p id="236b7030-c273-443b-b013-3363d929c762" class="">Response</p><pre id="51061c23-af33-4f55-8a02-632a167a9a4a" class="code"><code>{
+  &quot;places&quot;: [
+    {
+      &quot;emails&quot;: [
+        &quot;jramirez@alas-doradas.com&quot;
+      ],
+      &quot;webs&quot;: [],
+      &quot;contactWith&quot;: [
+        &quot;Lic. José Manuel Ramírez Avelar&quot;
+      ],
+      &quot;services&quot;: [
+        &quot;Reciclaje de papel y cartón&quot;
+      ],
+      &quot;materials&quot;: [
+        &quot;Cartón&quot;,
+        &quot;Papel de oficina&quot;
+      ],
+      &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a0&quot;,
+      &quot;name&quot;: &quot;Alas Doradas S.A. de C.V.&quot;,
+      &quot;phoneNumbers&quot;: [
+        {
+          &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a1&quot;,
+          &quot;phoneType&quot;: &quot;Teléfono&quot;,
+          &quot;phoneNumber&quot;: &quot;+503 2304-2200&quot;
+        },
+        {
+          &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a2&quot;,
+          &quot;phoneType&quot;: &quot;Teléfono&quot;,
+          &quot;phoneNumber&quot;: &quot;+503 2304-2261&quot;
+        },
+        {
+          &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a3&quot;,
+          &quot;phoneType&quot;: &quot;Celular&quot;,
+          &quot;phoneNumber&quot;: &quot;+503 7930-3559&quot;
+        }
+      ],
+      &quot;directions&quot;: [
+        {
+          &quot;name&quot;: &quot;Principal&quot;,
+          &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a4&quot;,
+          &quot;desc&quot;: &quot;Km. 27 1/2 Carreterra A Santa Ana&quot;,
+          &quot;latitude&quot;: 13.762347,
+          &quot;longitude&quot;: -89.367305
+        }
+      ],
+      &quot;__v&quot;: 0
+    },
+	...
+	]
+}</code></pre></div></div><p id="f1ecfc9b-9564-4d8a-a17c-b9c1035c7745" class="">
+</p><h3 id="135fc2fd-e4d9-4a92-a695-6f5fb7a41610" class="">Obtener solo las direcciones</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9e1891d4-0011-4b72-8218-ceb3a67e1576"><div style="font-size:1.5em"><span class="icon">🛑</span></div><div style="width:100%">/api/recyclerPlace/getDirections</div></figure><div id="d82588e2-727c-45a9-8d6a-58c5dddd9b58" class="column-list"><div id="ad764a09-0337-4743-9195-aa4c999b4cbc" style="width:31.25%" class="column"><h3 id="7acade15-ec1d-4d41-a36a-54382826f004" class="">Method</h3><pre id="a7cbbae3-da48-4fbc-8d19-ca5c75765071" class="code"><code>&quot;method&quot;: &quot;GET&quot;</code></pre></div><div id="e0ec984b-93a7-4b1e-9047-6bb61293df14" style="width:68.75%" class="column"><h3 id="0a721563-86ea-41c3-9ddb-b2610a213198" class="">Example</h3><p id="73e05569-e4dd-4cfe-9249-e46098bd97a2" class="">Request</p><pre id="87d31aa0-3633-445d-8bae-b9adad869964" class="code"><code>URL: /api/recyclerPlace/getDirections</code></pre><p id="a2d56d4a-ace1-4cbf-870b-eaf8ec50aa0f" class="">Response</p><pre id="cf5a6e28-3f44-4d5b-81ba-5860bff614ec" class="code"><code>{
+  &quot;places&quot;: [
+    {
+      &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a0&quot;,
+      &quot;name&quot;: &quot;Alas Doradas S.A. de C.V.&quot;,
+      &quot;directions&quot;: [
+        {
+          &quot;name&quot;: &quot;Principal&quot;,
+          &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a4&quot;,
+          &quot;desc&quot;: &quot;Km. 27 1/2 Carreterra A Santa Ana&quot;,
+          &quot;latitude&quot;: 13.762347,
+          &quot;longitude&quot;: -89.367305
+        }
+      ]
+    },
+		...
+	]
+}</code></pre></div></div><p id="f079905a-a020-4f7c-819d-571278341391" class="">
+</p><h3 id="0dd71fb1-3b1a-4a8c-85e1-1e2354c24db8" class="">Obtener un solo lugar de reciclaje</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0ff186d6-bd5b-4890-bf54-7d0e8042aa34"><div style="font-size:1.5em"><span class="icon">🛑</span></div><div style="width:100%">/api/recyclerPlace/one/:id</div></figure><div id="57f15585-93e7-4c5e-880f-0b4a3b5f3ec8" class="column-list"><div id="5d9d97f9-5598-48b9-ac0b-16577f9a152e" style="width:31.25%" class="column"><h3 id="42d1d4cf-cd96-484e-9aee-a20d804a94fb" class="">Method</h3><pre id="76a51c88-4c4a-4fad-85a0-1f6d1a8fc395" class="code"><code>&quot;method&quot;: &quot;GET&quot;</code></pre><h3 id="baca9ca8-7c1a-4319-ab0f-5e0c2c481ae8" class="">URL Param</h3><pre id="d47066db-d067-4a9a-a107-ede73daba78e" class="code"><code>&quot;id&quot;: &quot;RP ID&quot;</code></pre><p id="b1b27484-f4ba-484f-9438-b801a6df7db6" class="">
+</p></div><div id="2b5ae750-7d96-4616-85a5-2861776b1b73" style="width:68.75%" class="column"><h3 id="3eb6ed7d-7a56-41c8-a77b-ec86ab84c9de" class="">Example</h3><p id="745f7943-6375-4167-9562-b3a4a2eabfd7" class="">Request</p><pre id="f0fdc408-8a2b-4b46-a7ac-caaf89e3ee7c" class="code"><code>URL: /api/recyclerPlace/one/5ef968863a57531bf08ef9a0</code></pre><p id="42bcaeaa-57e8-4ca1-84c0-8476441bf67f" class="">
+</p><p id="868557ee-ecbd-41aa-bf1e-bdefffd6fe36" class="">Response</p><pre id="04b1fe66-b419-4932-bfa9-650722515e07" class="code"><code>{
+  &quot;place&quot;: {
+    &quot;emails&quot;: [
+      &quot;jramirez@alas-doradas.com&quot;
+    ],
+    &quot;webs&quot;: [],
+    &quot;contactWith&quot;: [
+      &quot;Lic. José Manuel Ramírez Avelar&quot;
+    ],
+    &quot;services&quot;: [
+      &quot;Reciclaje de papel y cartón&quot;
+    ],
+    &quot;materials&quot;: [
+      &quot;Cartón&quot;,
+      &quot;Papel de oficina&quot;
+    ],
+    &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a0&quot;,
+    &quot;name&quot;: &quot;Alas Doradas S.A. de C.V.&quot;,
+    &quot;phoneNumbers&quot;: [
+      {
+        &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a1&quot;,
+        &quot;phoneType&quot;: &quot;Teléfono&quot;,
+        &quot;phoneNumber&quot;: &quot;+503 2304-2200&quot;
+      },
+      {
+        &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a2&quot;,
+        &quot;phoneType&quot;: &quot;Teléfono&quot;,
+        &quot;phoneNumber&quot;: &quot;+503 2304-2261&quot;
+      },
+      {
+        &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a3&quot;,
+        &quot;phoneType&quot;: &quot;Celular&quot;,
+        &quot;phoneNumber&quot;: &quot;+503 7930-3559&quot;
+      }
+    ],
+    &quot;directions&quot;: [
+      {
+        &quot;name&quot;: &quot;Principal&quot;,
+        &quot;_id&quot;: &quot;5ef968863a57531bf08ef9a4&quot;,
+        &quot;desc&quot;: &quot;Km. 27 1/2 Carreterra A Santa Ana&quot;,
+        &quot;latitude&quot;: 13.762347,
+        &quot;longitude&quot;: -89.367305
+      }
+    ],
+    &quot;__v&quot;: 0
+  }
+}</code></pre></div></div><p id="28b9b3c2-e88d-4498-b940-9af9bb4ea055" class="">
+</p><h2 id="4493c6c3-444d-4251-a345-3ad927e937da" class="">Materiales reciclables</h2><h3 id="0c24bae5-d041-429a-9362-d950c2d8660c" class="">Obtener todos los materiales</h3><p id="9af7b076-498e-47ca-8b83-42829d6ffab0" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="29a78aaf-1458-45da-a65f-50d80c25dca7"><div style="font-size:1.5em"><span class="icon">🛑</span></div><div style="width:100%">/api/recyclerPlace/getAll</div></figure><div id="d82682bc-3c39-4b5a-8829-7577d9fda556" class="column-list"><div id="fc4c4a5a-c5ab-4488-bb3a-81131b4832f0" style="width:31.25%" class="column"><h3 id="a57b0438-740e-4c01-8b80-4de7a7c78e6c" class="">Method</h3><pre id="c9f7cd7b-2465-4720-8cf5-259cad59aa45" class="code"><code>&quot;method&quot;: &quot;GET&quot;</code></pre></div><div id="1c7eddce-30c8-4fde-bbb0-1c72c1c279a5" style="width:68.75%" class="column"><h3 id="608043f0-4e7b-4f16-ab8c-42ca03729da0" class="">Example</h3><p id="3774d185-290f-48b0-8f9e-ee1b37fdc148" class="">Request</p><pre id="7221b832-0fe7-42e8-b6cf-0e38b5c05273" class="code"><code>URL: /api/material/getAll</code></pre><p id="170c155e-0a69-4cee-9dec-5179a5a67a49" class="">Response</p><pre id="03ff8a98-5105-48fc-aad7-b18c625a3be9" class="code"><code>{
+  &quot;materials&quot;: [
+    {
+      &quot;items&quot;: [
+        &quot;Lata de Refresco&quot;,
+        &quot;Papel Aluminio&quot;,
+        &quot;Piezas de Aluminio&quot;,
+        &quot;Lámina de Aluminio&quot;,
+        &quot;Barra de Cobre&quot;,
+        &quot;Piezas de Cobre&quot;,
+        &quot;Piezas de Hierro&quot;,
+        &quot;Piezas de Acero&quot;,
+        &quot;Lámina de Cobre&quot;,
+        &quot;Lámina de Acero&quot;,
+        &quot;Tubos de Cobre&quot;,
+        &quot;Tubos de Aluminio&quot;
+      ],
+      &quot;_id&quot;: &quot;5f03c85d81b92b00d3cf11e1&quot;,
+      &quot;name&quot;: &quot;Metales&quot;,
+      &quot;__v&quot;: 0
+    },
+    {
+      &quot;items&quot;: [
+        &quot;Botella de Vídrio&quot;,
+        &quot;Lámina de Vídrio&quot;,
+        &quot;Piezas de Vídrio&quot;
+      ],
+      &quot;_id&quot;: &quot;5f03c85d81b92b00d3cf11e3&quot;,
+      &quot;name&quot;: &quot;Vídrio&quot;,
+      &quot;__v&quot;: 0
+    },
+    {
+      &quot;items&quot;: [
+        &quot;Botella de Plástico&quot;,
+        &quot;Bolsas Plásticas&quot;,
+        &quot;Pajillas&quot;,
+        &quot;Juguetes&quot;,
+        &quot;Piezas de Plástico&quot;
+      ],
+      &quot;_id&quot;: &quot;5f03c85d81b92b00d3cf11e4&quot;,
+      &quot;name&quot;: &quot;Plástico&quot;,
+      &quot;__v&quot;: 0
+    },
+    {
+      &quot;items&quot;: [
+        &quot;Caja de cartón&quot;,
+        &quot;Página de papel&quot;,
+        &quot;Libro&quot;,
+        &quot;Cuaderno&quot;
+      ],
+      &quot;_id&quot;: &quot;5f03c85d81b92b00d3cf11e5&quot;,
+      &quot;name&quot;: &quot;Papel&quot;,
+      &quot;__v&quot;: 0
+    },
+    {
+      &quot;items&quot;: [
+        &quot;Desechos de comida&quot;,
+        &quot;Desechos de jardín&quot;
+      ],
+      &quot;_id&quot;: &quot;5f03c85d81b92b00d3cf11e2&quot;,
+      &quot;name&quot;: &quot;Orgánicos&quot;,
+      &quot;__v&quot;: 0
+    }
+  ]
+}</code></pre></div></div><p id="9ef9de85-6b17-4bb1-b733-9e1722f245c7" class="">
+</p><h3 id="74a39b49-dad6-49d2-9287-cb5130d2a959" class="">Obtener un solo material reciclable</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="cb729eba-bb47-4599-98d3-7de73157901a"><div style="font-size:1.5em"><span class="icon">🛑</span></div><div style="width:100%">/api/material/one/:id</div></figure><div id="3b677643-8eef-4fbc-b6e9-519d2b68733b" class="column-list"><div id="f22b88c4-1fe3-42d2-b73b-96ea1e9e0bc9" style="width:31.25%" class="column"><h3 id="dbef5489-25aa-44d5-82b7-b2a47270254d" class="">Method</h3><pre id="08e624a7-3503-4ccd-807d-a0120a2ddf88" class="code"><code>&quot;method&quot;: &quot;GET&quot;</code></pre><h3 id="3d09d152-3802-4390-b394-f3cdb3413d84" class="">URL Param</h3><pre id="c2b09203-adeb-4906-ba27-5fdc45f22da7" class="code"><code>&quot;id&quot;: &quot;Material id&quot;</code></pre><p id="6c1e6aaf-c617-4389-ba60-5e57c26f4bb1" class="">
+</p></div><div id="e5d87047-5b11-491b-8d94-7ff3cfb5feb6" style="width:68.75%" class="column"><h3 id="eff82e98-a0a2-442d-abd9-af27105ffdaa" class="">Example</h3><p id="2fc1ef5c-f6fb-4faf-9e49-ac22277e4e61" class="">Request</p><pre id="8de03a78-455d-4c68-b886-5a627a9894fd" class="code"><code>URL: /api/material/one/5f03c85d81b92b00d3cf11e4</code></pre><p id="25597cdb-2cb4-44a5-88b1-2e485efdf0b4" class="">
+</p><p id="0be73a65-3144-4240-a31c-df21aa69cfa0" class="">Response</p><pre id="2b2ade43-a637-47e4-8f02-4816c0cc3c89" class="code"><code>{
+  &quot;material&quot;: {
+    &quot;items&quot;: [
+      &quot;Botella de Plástico&quot;,
+      &quot;Bolsas Plásticas&quot;,
+      &quot;Pajillas&quot;,
+      &quot;Juguetes&quot;,
+      &quot;Piezas de Plástico&quot;
+    ],
+    &quot;_id&quot;: &quot;5f03c85d81b92b00d3cf11e4&quot;,
+    &quot;name&quot;: &quot;Plástico&quot;,
+    &quot;__v&quot;: 0
+  }
+}</code></pre></div></div><p id="0f109d12-ca2e-4041-b5fc-f6688d4f63a7" class="">
+</p><h3 id="28680214-aee9-47c9-88ef-bbf1d806c22d" class="">Insertar un nuevo objeto a un material existente.</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3a8fe11f-28ae-4bf9-8f5b-40d451a760bc"><div style="font-size:1.5em"><span class="icon">🛑</span></div><div style="width:100%">/api/material/item</div></figure><div id="f6ddad01-5d3c-403d-9d3f-8d3595733b25" class="column-list"><div id="1020cb72-88e3-4b7d-9f48-4d27328bc049" style="width:31.25%" class="column"><h3 id="610eefb0-9c15-43d2-b38a-e262afdd9bca" class="">Method</h3><pre id="c88c5df1-b0c7-492b-b961-a5816340801a" class="code"><code>&quot;method&quot;: &quot;POST&quot;</code></pre><h3 id="bc057bfb-eb1a-420e-abac-e3c84452db70" class="">Request Body</h3><pre id="c51587d1-ee94-4675-a839-dada3704ebe2" class="code"><code>&quot;_id&quot;: &quot;Material id&quot;,
+&quot;item&quot;: &quot;New item&quot;</code></pre><p id="5ce1b0a3-c847-4501-b31d-f1213046d775" class="">
+</p></div><div id="2d383eb0-4f6f-49d6-960d-9241e0e52458" style="width:68.75%" class="column"><h3 id="e79307ef-2ee2-4ca4-b8e7-fbbbd5d506fe" class="">Example</h3><p id="828a344d-8b16-486d-bbae-f13de82b0b41" class="">Request</p><pre id="171004ff-3dfa-4038-b6f7-1757db0a4c82" class="code"><code>URL: /api/material/item
+
+BODY: {
+	&quot;_id&quot;: &quot;5f03c85d81b92b00d3cf11e4&quot;,
+	&quot;item&quot;: Vaso de Plástico
+}</code></pre><p id="932cdeeb-482f-46b2-bfe9-681a65e849bd" class="">
+</p><p id="1b3543f2-3273-44d6-902a-f143891bb1d2" class="">Response</p><pre id="4f02f7a7-7834-4e90-86f6-6204309e02f2" class="code"><code>{
+  &quot;message&quot;: &quot;Item inserted&quot;
+}</code></pre></div></div><p id="3c57c714-6688-4b3d-8c2c-ac0f37b102af" class="">
+</p><h2 id="a2b9cffe-5695-4b58-a255-4095718e190b" class="">Clasificador de objetos</h2><p id="89d9697b-923e-4253-9d46-257f27571b50" class="">
+</p><h3 id="3f0ed363-1397-4149-87d7-d9248b3e78cd" class="">Aprender un ejemplo de un objeto</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ebf6788e-f60a-4fd2-98ae-86cba411467c"><div style="font-size:1.5em"><span class="icon">🛑</span></div><div style="width:100%">/api/classifier/saveModel</div></figure><div id="66087237-c7ea-4825-bb03-b6b0457fca1c" class="column-list"><div id="e4df4beb-5b8b-4ff3-8cb3-72fae395adff" style="width:31.25%" class="column"><h3 id="eb4ce3a5-dbfa-4275-a0c6-01bffa8dc196" class="">Method</h3><pre id="3ccb48aa-6555-4179-8224-0901401dd05f" class="code"><code>&quot;method&quot;: &quot;POST&quot;</code></pre><h3 id="cbbbd0c4-dc4d-4df8-934d-55da77788782" class="">Request Body</h3><pre id="c6d785b2-6720-4074-b773-1e775bbc4de4" class="code"><code>&quot;materialID&quot;: &quot;Material id&quot;,
+&quot;item&quot;: &quot;item name&quot;,
+&quot;image&quot;: &quot;item image&quot;</code></pre></div><div id="aa49ab3f-2465-41f8-b308-7d8c75753fff" style="width:68.75%" class="column"><h3 id="eb428159-f8e1-451a-adaf-afc07aa046a2" class="">Example</h3><p id="c65130be-6cc2-43b2-830a-b1180a7a68d9" class="">Request</p><pre id="794e0800-5c66-41aa-9304-07501d78fa3a" class="code"><code>URL: /api/classifier/saveModel
+
+BODY: {
+	&quot;materialID&quot;: &quot;5f03c85d81b92b00d3cf11e4&quot;,
+	&quot;item&quot;: Vaso de Plástico,
+	&quot;image&quot;: Multipart Form data
+}</code></pre><p id="9524b8f8-edd5-4c68-abb9-23ab0051e74c" class="">
+</p><p id="6c6be533-fa9c-4fef-a245-a006b316f4bf" class="">Response</p><pre id="521ba4b2-e382-4084-a2d3-f61ff05f2af1" class="code"><code>{
+  &quot;message&quot;: &quot;Model saved Successfully&quot;
+}</code></pre></div></div><p id="e94fc0bc-db82-48d6-ada8-7597b8209b0f" class="">
+</p><h3 id="b8b7b63c-2c9a-4606-9e15-4716debafb63" class="">Clasificar un objeto de acuerdo a la base de conocimiento</h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5ae3c3e4-6645-4052-ab0e-268ae81aa139"><div style="font-size:1.5em"><span class="icon">🛑</span></div><div style="width:100%">/api/classifier/classify</div></figure><div id="e379d596-1cdf-4d80-8230-9503b3ccd065" class="column-list"><div id="6505de5c-2ff2-4381-9874-50ab9cc8a043" style="width:31.25%" class="column"><h3 id="6b95d2ab-0d9c-4053-bfb3-707d8b5be60e" class="">Method</h3><pre id="5630ec4f-c5c6-46c3-9f7d-c007ee844434" class="code"><code>&quot;method&quot;: &quot;POST&quot;</code></pre><h3 id="90b41e81-11e5-4f6c-bc2c-109224a6ea7b" class="">Request Body</h3><pre id="1c32e47d-2d71-4245-a902-984439caa062" class="code"><code>&quot;image&quot;: &quot;item image&quot;</code></pre></div><div id="028bdd26-392f-4176-8c39-ac197bd4f684" style="width:68.75%" class="column"><h3 id="a13f7853-825d-438b-9ac1-0585503ae35c" class="">Example</h3><p id="1a30f7c9-b654-4957-ae26-654e86b1e282" class="">Request</p><pre id="29f8552e-e07c-4c9a-954f-c583a8b6c51c" class="code"><code>URL: /api/classifier/classify
+
+BODY: {
+	&quot;image&quot;: Multipart Form data
+}</code></pre><p id="b9cfd6f4-8447-4ae2-bfc1-ae39b9f82275" class="">
+</p><p id="b0ae608b-d298-4a1c-a334-df46f979ac35" class="">Response</p><pre id="76e8b958-0829-4687-83bb-c306abf9bda7" class="code"><code>{
+  &quot;type&quot;: &quot;Caja de cartón&quot;,
+  &quot;material&quot;: &quot;Papel&quot;,
+  &quot;probability&quot;: 1
+}</code></pre></div></div><p id="1380a772-d770-474a-80cb-89149e646891" class="">
+</p><h1 id="09b491fe-dd95-483d-9cf5-7d26f522de2e" class="">Sobre rutas desactivadas</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="05d8d553-b67b-4e40-bed2-03a34eaa1d62"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Dentro de la API se encuentran rutas desactivadas que funcionan para realizar pruebas, poblar la base, o eliminar datos. Por razones de seguridad, y para evitar cualquier error han sido puestas en comentarios dentro del código.</div></figure><p id="ad4c528a-eba3-4306-8d76-baf5636b01e1" class="">
+</p><h2 id="998ae851-378d-48e8-af2c-f7109a1f7834" class="">Lugares de reciclaje</h2><ul id="f9ffa0a2-4143-4010-aeaa-5876a28a8259" class="bulleted-list"><li>/api/recyclerPlace/dumpData → Ingresa todos los centros de reciclaje a la Base de Datos.</li></ul><p id="78636ae2-961c-4341-81bb-c483e85c9205" class="">
+</p><h3 id="85f20be3-3ca2-413a-b8d7-cc2f16240688" class="">Materiales reciclables</h3><ul id="21c3073a-c8e8-49b0-b55c-1f5a22d45bbb" class="bulleted-list"><li>/api/material/dumpData → Ingresa todos los materiales reciclables a la Base de Datos.</li></ul><ul id="2d107c3f-2384-420f-a629-4ce520b1c8f1" class="bulleted-list"><li>/api/material/ (Method: PUT) → Actualiza los valores de un material.</li></ul><p id="5c84e935-9cee-4b63-9b9f-cccf7f0b18c0" class="">
+</p><h3 id="c0364ace-89c9-48eb-9b13-ca16ff24c80e" class="">Clasificador de objetos</h3><ul id="e5c4972f-d5d4-4570-8ae8-ff915fcd1658" class="bulleted-list"><li>/api/classifier/getAll → Obtiene todos los tensores almacenados como base de conocimiento</li></ul><ul id="4115b1f4-3944-41ce-84a6-27f535ae42f9" class="bulleted-list"><li>/api/classifier/dropAll → Borra todos los tensores almacenados como base de conocimiento</li></ul><p id="3cf3a525-cb0b-46ff-8e63-6ddfb93a3d97" class="">
+</p></div></article></body></html>

@@ -1,0 +1,630 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>API de componentes</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6249f093-5163-496d-bc6f-02dca3431cff" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="API%20de%20componentes%206249f0935163496dbc6f02dca3431cff/chess.png"/></div><h1 class="page-title">API de componentes</h1></header><div class="page-body"><p id="14f98afe-4df9-4d2a-a89f-ee5c672ac169" class="">La aplicación móvil esta desarrollada con React Navite, tecnología enfocada a componentes funcionales con un estado reactivo.</p><p id="0bf3a3de-379b-4446-8292-f39bd4755060" class="">
+</p><h3 id="a730593d-b72c-4fcd-b786-33ed62263c53" class="">App</h3><p id="fe94e16d-ceef-4fa2-9fb6-54591e7b3366" class="">Componente principal en el cual se cargan las fuentes a utilizar, componentes de la aplicación, pantalla de inicio.</p><p id="f19439ff-0514-437c-9e3a-4d52049bf251" class=""><strong>States:</strong></p><p id="7d663c5f-e575-4d91-b113-d62683fa39df" class="">dataLoaded: determina si ya se cargaron los recursos necesarios. | Boolean | Default: false</p><h3 id="78fbbf11-3753-466c-9ad7-33e0ecbaa72e" class="">MainNavStack</h3><p id="e80ce0bc-f595-43ad-a51c-17b8ed3e3e48" class="">Stack de componentes.</p><h3 id="bfd6869d-9dff-49fd-a239-e2239eb5be06" class="">MainTabHome</h3><p id="eb3e057c-6461-4a8b-b980-e839c5cb5d10" class="">Componente que contiene el menú inferior</p><h3 id="34621877-6e13-4340-842a-3f53add2f37c" class="">RecyclerPlaceScreen</h3><p id="18965b7b-1dc0-4970-bb57-d9fd67dcae38" class=""><strong>States:</strong></p><p id="fe4b4031-c6cc-48a9-9850-d3c0c333a153" class="">mapRegion: ubicación del centro de reciclaje | Object | Default: </p><pre id="02fe68a0-11a9-4311-a0f0-f61364d265bc" class="code"><code>{
+		latitude: 0,
+		longitude: 0,
+		latitudeDelta:  0.005,
+		longitudeDelta: 0.005,
+	}</code></pre><h3 id="b79a6de7-6cac-4437-afdd-6806aee2e468" class="">MapTab</h3><p id="2cdc096f-65e6-430c-b7dd-8736d1f2cea2" class="">Componente encargado de mostrar el mapa y los centros de reciclaje cercanos.</p><p id="432bae3a-e0f8-463a-88fc-bd4a4683c74f" class=""><strong>States:</strong></p><p id="8d3255fb-433e-4e7f-8b39-70753347b053" class="">region: Ubicación visual en el mapa | Object | Default: undefined.</p><p id="a93b2d0e-b58a-444e-a560-127e7ef6ec98" class="">position: localización del usuario por GPS | Object | Default: undefined.</p><p id="fd823c53-ce7f-47cf-ad7c-168597098939" class="">circleRadius: radio del buffer circular | Number | Default: 1000</p><p id="3adfc7c2-e8f3-410d-a578-45d7f9095d0f" class="">directionsData: data procesada de las direcciones de centros de reciclaje | Array | Default: []</p><p id="3358986e-3298-47a3-a86e-b0c055674143" class="">selectedPlace: lugar de reciclaje seleccionado | Object | undefined;</p><p id="49c5e26a-ec10-43b4-830c-f9f6cd85b7ad" class=""><strong>Methods:</strong></p><p id="20f82966-302c-4a62-a775-a0b551fcff9f" class="">fetchDirections: Consulta a la api por las direcciones de los centros de reciclaje.</p><p id="531db3b4-ee57-4f40-af0a-d6b4844372c3" class="">navigateToRP: Navega a la Hoja de información de un centro de reciclaje específico.</p><p id="0b032250-fc33-4fe7-a1c0-fd4342a89eae" class="">lineUpDirections: Transforma la respuesta de direcciones de la API en un arreglo lineal procesable por la app</p><h3 id="38705a70-3a4b-41ee-b788-59ab92f62b0e" class="">CameraTab</h3><p id="61677596-0918-497a-a81f-5b79fcc9e448" class="">Componente encargado de escanear imágenes.</p><p id="041adf2a-9607-4909-a7d0-c217812172f0" class=""><strong>States:</strong></p><p id="ee4014e6-28f8-41a6-adc5-9052aac8294d" class="">hasPermission: determina si el dispositivo tiene permisos de utilizar la camara | Boolean | undefined.</p><p id="cbbb3661-a32a-41fa-af87-26562fe95838" class="">width: Ancho de la vista de cámara | Number | Default: 0 .</p><p id="35a0859b-fb1a-4c65-9e2d-b2d16e68fe6a" class="">height: Alto de la vista de cámara | Number | Default: 0.</p><p id="b121502e-6e61-4895-815b-926d7665bfb3" class="">
+</p><h3 id="a62ca61f-fa7f-48b3-84d4-387e44639584" class="">ModedText</h3><p id="7d62f0ab-f459-472e-9967-ae054a323926" class="">Componente para mostrar texto.</p><p id="9a5ec663-d4ca-4612-ace3-7af81f30a529" class=""><strong>Props</strong>: </p><p id="f8c62b49-b217-4d0d-8d43-65df7c803d14" class="">big: tamaño del texto | number | Default: null.</p><p id="ad25c9ec-e5c9-4b23-acc1-1be962cc4da4" class="">white: Determina si el texto es color blanco | Boolean | Default: false.</p><p id="885c0004-8bc9-414f-9379-27c7a9edf077" class="">center: Determina si el texto estará centrado horizontalmente | Boolean | Default: false.</p><p id="dfa96335-a182-4cbd-a67d-2dfb088d14af" class="">centerV: Determina si el texto estara centrado verticalmente | Boolean | Default: false.</p><p id="1d11642b-52eb-49c6-9941-ee8eafdf9ce2" class="">tab: Determina si el texto tendra un marginStart de 16 | Boolean | Default: false.</p><p id="b0de0200-a31f-46cd-8b04-a336612c5db6" class="">
+</p><h3 id="e9114c13-1b56-4780-9f72-6e69dc7360f2" class="">CameraLayout</h3><p id="6e41a3e7-40fd-4c02-9ea7-809df7599acd" class="">Componente donde muestra controles de la cámara.</p><p id="7f979a5d-5467-4dbd-8243-c443d53de41a" class=""><strong>Props:</strong></p><p id="7e81db45-7f37-48e7-8b86-9752d62eed86" class="">camera: referencia de un objeto camara. | Ref | Default: undefined.</p><p id="900bf924-fe17-436a-bcfe-88cd1e7d892c" class="">flipCameraAction: acción de voltear camara. | Function | Default: undefined.</p><p id="f459df25-0dbb-441a-873e-4fe5db19c94b" class=""><strong>States:</strong></p><p id="d6b9f3cd-52c9-4339-b054-38271379db45" class="">loading: bandera que determina si se muestra el progreso de carga de la predicción | Boolean | Default: false.</p><p id="0d29f703-37fe-47af-ba49-15ab6a1b0fe2" class="">complete: bandera que determina si muestra el contenido de la predicción | Boolean | Default: false.</p><p id="4328fe3b-6b94-4e30-acc9-6a4f13e3a006" class="">height: tamaño del layout inferiror | Height units | Default: &quot;15% .</p><p id="4cc23274-954e-4241-9b04-be8d9bbeb56b" class="">modal: bandera que determina la visualizacion del modal para entrenar | Boolean | Default: false.</p><p id="16e18246-e63b-4fbf-9234-2302f8389283" class="">photo: metadata de la foto tomada | Object | Default: null.</p><p id="ee00dbb9-9de6-4469-86a1-b5786a1068a5" class="">materials: arreglo de los materiales obtenidos de la API | Array | Default : [ ].</p><p id="bab1f773-8ca7-4c72-b35c-8f07663d3edc" class="">material: material seleccionado en el modal | String | Default: null .</p><p id="7e223f43-ac53-4d31-a161-3beb82815e10" class="">materiaID: material id seleccionado en el modal | String | Default: null .</p><p id="33945e09-fcd2-429d-9ff7-07c51fdc905d" class="">objects: arreglo de los objetos | Array | Default : [ ]</p><p id="c0f9ecbc-c844-4654-8ef0-fa562b3b8954" class="">object: objeto seleccionado | String | Default: null.</p><p id="a6e3f0ea-4079-44b6-a1d8-318286220040" class="">prediction: informacion de predicción | Object | Default: </p><pre id="6d3430d2-b312-409c-aca3-179138013cf0" class="code"><code>{material:&quot;&quot;,object:&quot;&quot;,precision:0}</code></pre><p id="5a1b896e-a2ea-48e7-9706-8dc9074f0ac9" class=""><strong>Methods:</strong></p><p id="ce544f4e-8081-46f7-97b9-fe12c752ace4" class="">fetchMaterials: obtención de datos de la API .</p><p id="0300d346-5f7f-43d2-b17f-a26ca350a711" class="">retry: re establecimiento de estados: complete, height.</p><p id="8afe8852-a3a3-49ae-9703-691d5a90e288" class="">colorMaterial (material) : Obtiene un texto y devuelve un color en formato hexadecimal.</p><p id="bb9af4f1-8482-46ed-affc-75c2f914ce92" class="">takePicture: método asíncrono que toma captura de lo que se esta visualizando la camara y enviar foto a la API y recibir la predicción</p><p id="ea5f6a65-a41b-491b-9c03-86b326a9ec12" class="">sendPrediction: enviar información sobre objetos no identificados por la API</p></div></article></body></html>
